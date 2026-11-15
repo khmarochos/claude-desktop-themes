@@ -138,6 +138,39 @@ const LOOKS: Record<string, Look> = {
       },
     },
   },
+  lilac: {
+    title: 'Бузок — блідо-бузковий, майже білий, з зеленими акцентами',
+    spec: {
+      label: 'Бузок',
+      roles: { accent: '#2e9a52', danger: '#c03a4a', success: '#5a8f22', warning: '#b07a12', pro: '#8a5cc4' },
+      light: {
+        gray: {
+          anchors: {
+            'surface-0': '#f1edf6',
+            'surface-1': '#f6f3fa',
+            'surface-2': '#fbf9fd',
+            'text-primary': '#241d2e',
+            'text-secondary': '#4a4058',
+            'text-muted': '#615672',
+          },
+        },
+      },
+      // Вночі: бузкові сутінки, той самий зелений акцент.
+      dark: {
+        gray: {
+          anchors: {
+            'surface-0': '#18141f',
+            'surface-1': '#1f1a28',
+            'surface-2': '#262031',
+            'surface-3': '#2c2539',
+            'text-primary': '#f1ecf8',
+            'text-secondary': '#cdc4da',
+            'text-muted': '#a99fb8',
+          },
+        },
+      },
+    },
+  },
   terminal: {
     title: 'Термінал — зелений люмінофор на чорному (лише темна)',
     spec: {
@@ -216,7 +249,7 @@ export const register: Register = on => {
   on('session.start', async ($, e, next) => {
     await $.command.register({
       name: 'theme-custom',
-      description: 'Змінити тему: /theme-custom paper | midnight | forest | field | terminal | off',
+      description: 'Змінити тему: /theme-custom paper | midnight | forest | field | lilac | terminal | off',
     })
 
     const saved = await $.store.get(STORE_KEY)
