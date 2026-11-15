@@ -2,11 +2,18 @@ import type { Register, ThemeBackdrop, ThemeSetArgs } from 'claude-code'
 
 import { CRT_SCENE } from './crt-scene'
 import { cursorSpinner, spinnerText } from './cursor-spinner'
+import { LILAC_SCENE } from './lilac-scene'
 import { makeColors } from './make-colors.js'
 
 type Look = { title: string; spec: Parameters<typeof makeColors>[0]; backdrop?: ThemeBackdrop }
 
 const CRT = 'crt'
+const LILAC = 'lilac-glow'
+
+const SCENES: Record<string, { source: string; alt: string }> = {
+  [CRT]: { source: CRT_SCENE, alt: 'Екран старого CRT-монітора зі скан-лініями' },
+  [LILAC]: { source: LILAC_SCENE, alt: 'Ледь помітне зелене й бузкове сяйво' },
+}
 
 // Кожна тема має світлий і темний варіант.
 const LOOKS: Record<string, Look> = {
@@ -170,6 +177,8 @@ const LOOKS: Record<string, Look> = {
         },
       },
     },
+    // Ледь помітне зелене сяйво; панелі зі своїм кольором, щоб текст лишався чітким.
+    backdrop: { scene: LILAC, glass: { blur: 24, opacity: 0.7 } },
   },
   terminal: {
     title: 'Термінал — зелений люмінофор на чорному (лише темна)',
@@ -222,16 +231,14 @@ function listing(current: string): string {
 
 export const register: Register = on => {
   on('ui.render', { component: 'Backdrop' }, ($, e, next) => {
-    if (
-      (e.surface !== 'desktop' && e.surface !== 'mobile') ||
-      e.props.plugin !== 'desktop-themes' ||
-      e.props.scene !== CRT
-    ) {
+    const scene = SCENES[e.props.scene]
+
+    if ((e.surface !== 'desktop' && e.surface !== 'mobile') || e.props.plugin !== 'desktop-themes' || !scene) {
       return next(e)
     }
     const { Svg } = $.ui.resolve(e)
 
-    return <Svg source={CRT_SCENE} alt="Екран старого CRT-монітора зі скан-лініями" isInteractive />
+    return <Svg source={scene.source} alt={scene.alt} isInteractive />
   })
 
   // Замість помаранчевих крапок Claude: курсор-непосида, лише в темі «Термінал».
