@@ -1,0 +1,5 @@
+{
+  "name": "claude-desktop-themes",
+  "owner": { "name": "khmarochos" },
+  "plugins": [{ "name": "desktop-themes", "source": "./" }]
+}
