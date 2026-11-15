@@ -58,22 +58,44 @@ export const LILAC_SCENE = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0
       .mote { fill: #5fe08f; }
       .motes { opacity: 0.4; }
     }
-    .drift-a { animation: drift-a 70s ease-in-out infinite alternate; }
-    .drift-b { animation: drift-b 90s ease-in-out infinite alternate; }
-    .drift-c { animation: drift-c 80s ease-in-out infinite alternate; }
-    @keyframes drift-a { from { transform: translate(0, 0); } to { transform: translate(260px, 140px); } }
-    @keyframes drift-b { from { transform: translate(0, 0); } to { transform: translate(-300px, -90px); } }
-    @keyframes drift-c { from { transform: translate(0, 0); } to { transform: translate(-160px, 180px); } }
+    /* Плями мандрують по екрану... */
+    .drift-a { animation: drift-a 26s ease-in-out infinite alternate; }
+    .drift-b { animation: drift-b 34s ease-in-out infinite alternate; }
+    .drift-c { animation: drift-c 30s ease-in-out infinite alternate; }
+    @keyframes drift-a {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(380px, 90px); }
+      100% { transform: translate(180px, 300px); }
+    }
+    @keyframes drift-b {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(-420px, 160px); }
+      100% { transform: translate(-200px, -60px); }
+    }
+    @keyframes drift-c {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(-360px, -140px); }
+      100% { transform: translate(-120px, 120px); }
+    }
+    /* ...і водночас «дихають»: ростуть, стискаються, яскравішають. */
+    .breathe { transform-box: fill-box; transform-origin: 50% 50%; }
+    .breathe-a { animation: breathe 9s ease-in-out infinite; }
+    .breathe-b { animation: breathe 12s ease-in-out -4s infinite; }
+    .breathe-c { animation: breathe 10s ease-in-out -7s infinite; }
+    @keyframes breathe {
+      0%, 100% { transform: scale(0.8, 0.85); opacity: 0.6; }
+      50% { transform: scale(1.2, 1.12); opacity: 1; }
+    }
     ${moteStyles}
     @media (prefers-reduced-motion: reduce) {
-      .drift-a, .drift-b, .drift-c, .mote { animation: none; }
+      .drift-a, .drift-b, .drift-c, .breathe, .mote { animation: none; }
       .mote { opacity: 0; }
     }
   </style>
   <rect class="base" width="1600" height="1000"/>
-  <g class="glow-b drift-b"><ellipse cx="1250" cy="220" rx="620" ry="420" fill="url(#g2)"/></g>
-  <g class="glow-a drift-a"><ellipse cx="260" cy="180" rx="560" ry="380" fill="url(#g1)"/></g>
-  <g class="glow-c drift-c"><ellipse cx="1350" cy="860" rx="520" ry="340" fill="url(#g3)"/></g>
+  <g class="glow-b drift-b"><ellipse class="breathe breathe-b" cx="1250" cy="220" rx="620" ry="420" fill="url(#g2)"/></g>
+  <g class="glow-a drift-a"><ellipse class="breathe breathe-a" cx="260" cy="180" rx="560" ry="380" fill="url(#g1)"/></g>
+  <g class="glow-c drift-c"><ellipse class="breathe breathe-c" cx="1350" cy="860" rx="520" ry="340" fill="url(#g3)"/></g>
   <g class="motes">
     ${motes}
   </g>
