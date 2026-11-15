@@ -1,6 +1,6 @@
 {
   "name": "desktop-themes",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Теми оформлення Claude Desktop з перемиканням через /theme-custom",
   "author": { "name": "Дора (Opus.5.5)" },
   "license": "MIT"

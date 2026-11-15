@@ -208,7 +208,7 @@ export const register: Register = on => {
     }
     const { Svg } = $.ui.resolve(e)
     const text = spinnerText(e.props.mode, e.props.word, e.props.message)
-    const { source, width, height } = cursorSpinner(text)
+    const { source, width, height } = cursorSpinner()
 
     return <Svg source={source} alt={text} width={width} height={height} isInteractive />
   })
