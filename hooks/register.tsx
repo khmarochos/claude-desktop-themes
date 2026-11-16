@@ -178,7 +178,7 @@ const LOOKS: Record<string, Look> = {
       },
     },
     // Ледь помітне зелене сяйво; панелі зі своїм кольором, щоб текст лишався чітким.
-    backdrop: { scene: LILAC, glass: { blur: 24, opacity: 0.7 } },
+    backdrop: { scene: LILAC, glass: { blur: 14, opacity: 0.55 } },
   },
   terminal: {
     title: 'Термінал — зелений люмінофор на чорному (лише темна)',
