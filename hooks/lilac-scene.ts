@@ -21,7 +21,7 @@ const motes = MOTES.map(
 ).join('\n    ')
 
 const moteStyles = MOTES.map(
-  (m, i) => `.m${i} { animation: rise${i} ${m.dur}s linear ${m.delay}s infinite; }
+  (m, i) => `.m${i} { animation: rise${i} ${Math.round(m.dur * 0.6)}s linear ${m.delay}s infinite; }
     @keyframes rise${i} {
       0% { transform: translate(0, 0); opacity: 0; }
       10% { opacity: 1; }
@@ -42,26 +42,26 @@ export const LILAC_SCENE = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0
     .green { stop-color: #2e9a52; }
     .mint { stop-color: #5fc98a; }
     .lilac { stop-color: #b9a3e0; }
-    .glow-a { opacity: 0.22; }
-    .glow-b { opacity: 0.35; }
-    .glow-c { opacity: 0.18; }
+    .glow-a { opacity: 0.42; }
+    .glow-b { opacity: 0.55; }
+    .glow-c { opacity: 0.38; }
     .mote { fill: #2e9a52; opacity: 0; }
-    .motes { opacity: 0.5; }
+    .motes { opacity: 0.85; }
     @media (prefers-color-scheme: dark) {
       .base { fill: #18141f; }
       .green { stop-color: #33c46a; }
       .mint { stop-color: #4fd08a; }
       .lilac { stop-color: #6b4fa0; }
-      .glow-a { opacity: 0.17; }
-      .glow-b { opacity: 0.30; }
-      .glow-c { opacity: 0.13; }
+      .glow-a { opacity: 0.34; }
+      .glow-b { opacity: 0.48; }
+      .glow-c { opacity: 0.30; }
       .mote { fill: #5fe08f; }
-      .motes { opacity: 0.4; }
+      .motes { opacity: 0.75; }
     }
     /* Плями мандрують по екрану... */
-    .drift-a { animation: drift-a 26s ease-in-out infinite alternate; }
-    .drift-b { animation: drift-b 34s ease-in-out infinite alternate; }
-    .drift-c { animation: drift-c 30s ease-in-out infinite alternate; }
+    .drift-a { animation: drift-a 16s ease-in-out infinite alternate; }
+    .drift-b { animation: drift-b 21s ease-in-out infinite alternate; }
+    .drift-c { animation: drift-c 18s ease-in-out infinite alternate; }
     @keyframes drift-a {
       0% { transform: translate(0, 0); }
       50% { transform: translate(380px, 90px); }
@@ -79,9 +79,9 @@ export const LILAC_SCENE = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0
     }
     /* ...і водночас «дихають»: ростуть, стискаються, яскравішають. */
     .breathe { transform-box: fill-box; transform-origin: 50% 50%; }
-    .breathe-a { animation: breathe 9s ease-in-out infinite; }
-    .breathe-b { animation: breathe 12s ease-in-out -4s infinite; }
-    .breathe-c { animation: breathe 10s ease-in-out -7s infinite; }
+    .breathe-a { animation: breathe 6s ease-in-out infinite; }
+    .breathe-b { animation: breathe 8s ease-in-out -4s infinite; }
+    .breathe-c { animation: breathe 7s ease-in-out -7s infinite; }
     @keyframes breathe {
       0%, 100% { transform: scale(0.8, 0.85); opacity: 0.6; }
       50% { transform: scale(1.2, 1.12); opacity: 1; }
